@@ -1,5 +1,9 @@
-const { NAMESPACE_PROFILE_US, DEFAULT_LOCALE } = require("../constants");
 const rp = require("request-promise");
+const slug = require("slug");
+const {
+    NAMESPACE_PROFILE_US,
+    DEFAULT_LOCALE
+} = require("../constants");
 
 class CharacterService {
 
@@ -9,7 +13,9 @@ class CharacterService {
 
     async getCharacter(characterName, realmName) {
         const oauthToken = await this.oauthClient.getToken();
-        const characterSummaryDocumentURL = `https://us.api.blizzard.com/profile/wow/character/${encodeURIComponent(realmName)}/${encodeURIComponent(characterName)}`;
+        const encodedCharacterName = encodeURIComponent(characterName);
+        const realmNameSlug = slug(realmName);
+        const characterSummaryDocumentURL = `https://us.api.blizzard.com/profile/wow/character/${realmNameSlug}/${encodedCharacterName}`;
         const response = await rp.get({
             uri: characterSummaryDocumentURL,
             json: true,

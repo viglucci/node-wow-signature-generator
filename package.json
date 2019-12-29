@@ -15,6 +15,7 @@
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "simple-oauth2": "^2.2.1",
+    "slug": "^2.0.0",
     "throng": "^4.0.0",
     "tmp": "^0.0.33"
   },
