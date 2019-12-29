@@ -1,6 +1,7 @@
 const request = require("request");
 const tmp = require("tmp");
 const fs = require("fs");
+const slug = require("slug");
 const {
   BACKGROUND_IMAGE_EMPTY_PATH,
   BACKGROUND_IMAGE_ALLIANCE_PATH,
@@ -82,7 +83,10 @@ class SignatureService {
           if (err) {
             reject(err);
           } else {
-            resolve(buffer);
+            resolve({
+              filename: `${slug(character.name)}-${character.realm.slug}.png`.toLowerCase(),
+              data: buffer
+            });
           }
         });
     });

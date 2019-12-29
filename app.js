@@ -15,9 +15,10 @@ app.get("/signature", async (req, res, next) => {
     const { characterName, realmName } = req.query;
     const character = await characterService.getCharacter(characterName, realmName);
     const characterMedia = await characterService.getCharacterMedia(character);
-    const imageBuffer = await signatureService.generateImage(character, characterMedia);
+    const { filename, data } = await signatureService.generateImage(character, characterMedia);
     res.set("Content-Type", "image/png");
-    res.send(imageBuffer);
+    res.set("Content-Disposition", `inline; filename="${filename}"`);
+    res.send(data);
   } catch (err) {
     next(err);
   }
