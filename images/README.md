@@ -1,3 +1,1 @@
-Some custom work was done to make these assets usable for this application, but can be found here: [https://worldofwarcraft.com/](https://worldofwarcraft.com/en-us/battle-for-azeroth/media)
-
-Each background corresponds to a given faction, based on faction ID. Undeclared Pandaren have their own faction, hence faction id 2.
+- Background images to cover each possible faction scenario (Alliance, Horder, Neutral). Used when generating a signature image (https://github.com/viglucci/node-wow-signature-generator/blob/master/services/SignatureService.js#L33). Original images without editing can be found on the BFA media gallery page [https://worldofwarcraft.com/](https://worldofwarcraft.com/en-us/battle-for-azeroth/media).
