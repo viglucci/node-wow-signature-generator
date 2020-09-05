@@ -24,7 +24,7 @@ app.get("/signature", async (req, res, next) => {
   }
 });
 
-app.use((req, res, err) => {
+app.use((err, req, res, next) => {
   res.json(err.toString());
 });
 
