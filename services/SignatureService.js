@@ -40,9 +40,11 @@ class SignatureService {
 
   async generateImage(character, characterMedia) {
     const { faction } = character;
-    const { bust_url: bustUrl } = characterMedia;
+    const { assets } = characterMedia;
+    const insetAsset = assets.find((asset) => asset.key === "inset");
+    const insetUrl = insetAsset.value;
     const backgroundImage = this.getBackgroundImagePath(faction.type);
-    const tmpBustPath = await this.downloadCharacterMediaAsset(bustUrl);
+    const tmpBustPath = await this.downloadCharacterMediaAsset(insetUrl);
     const identityString = `Level ${character.level} ${character.character_class.name} ${
       character.guild ? `of <${character.guild.name}> ` : ""
       }on ${character.realm.name}`;
