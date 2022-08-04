@@ -20,6 +20,7 @@ app.get("/signature", async (req, res, next) => {
     res.set("Content-Disposition", `inline; filename="${filename}"`);
     res.send(data);
   } catch (err) {
+    console.error(err);
     next(err);
   }
 });
@@ -29,6 +30,11 @@ app.use((err, req, res, next) => {
 });
 
 module.exports = async () => {
-  await oauthClient.getToken();
+  try {
+    await oauthClient.getToken();
+  } catch (err) {
+    console.error("failed to initialize oauth token at startup:")
+    console.log(err.message);
+  }
   return Promise.resolve(app);
 };

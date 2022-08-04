@@ -1,4 +1,8 @@
-require("dotenv").config();
+try {
+  require("dotenv").config();
+} catch (err) {
+  console.log('[WARN] No .env file found');
+}
 
 const throng = require("throng");
 const getApp = require("./app");
