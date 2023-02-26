@@ -20,13 +20,13 @@ app.get("/signature", async (req, res, next) => {
     res.set("Content-Disposition", `inline; filename="${filename}"`);
     res.send(data);
   } catch (err) {
-    console.error(err);
     next(err);
   }
 });
 
 app.use((err, req, res, next) => {
-  res.json(err.toString());
+  console.error(err.toString());
+  res.status(500).send(err.toString());
 });
 
 module.exports = async () => {
